@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>View Meetings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper blue">
+            <a href="#" class="brand-logo">Mentor-Mentee Management System</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/set_meeting">Set Meeting</a></li>
+                <li class="active"><a href="/view_meetings">View Meetings</a></li>
+                <li><a href="/students">Students</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h3>View Meetings</h3>
+
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Meeting ID</th>
+                <th>Student ID</th>
+                <th>Meeting Date</th>
+                <th>Meeting Topic</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through meetings and display each one as a table row -->
+            <th:block th:each="meeting : ${meetings}">
+                <tr>
+                    <td th:text="${meeting.id}"></td>
+                    <td th:text="${meeting.studentId}"></td>
+                    <td th:text="${meeting.date}"></td>
+                    <td th:text="${meeting.topic}"></td>
+                    <td th:text="${meeting.remarks}"></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</body>
+</html>

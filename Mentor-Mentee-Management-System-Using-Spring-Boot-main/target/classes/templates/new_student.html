@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mentor-Mentee Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        /* Resize UI to Fit Whole Page */
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="nav-wrapper blue">
+            <a href="#" class="brand-logo">Mentor-Mentee Management System</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/set_meeting">Set Meeting</a></li>
+                <li><a href="/view_meetings">View Meetings</a></li>
+                <li><a href="/students">Students</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h3>Add New Student</h3>
+    <form id="addStudentForm" action="/saveStudent" method="post">
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="first_name" type="text" class="validate" name="firstName">
+                <label for="first_name">First Name</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="last_name" type="text" class="validate" name="lastName">
+                <label for="last_name">Last Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="email" type="email" class="validate" name="email">
+                <label for="email">Email</label>
+            </div>
+        </div>
+        <button type="submit" class="waves-effect waves-light btn">Add Student</button>
+    </form>
+    <br>
+    <a href="/students" class="blue-text">Back</a>
+</div>
+
+<script>
+    // Submit form data when "Add Student" button is clicked
+    document.getElementById('addStudentForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+        var form = event.target;
+        var formData = new FormData(form);
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        }).then(function (response) {
+            if (response.ok) {
+                // If successful, redirect to the students page
+                window.location.href = '/students';
+            } else {
+                console.error('Failed to add student:', response.statusText);
+            }
+        }).catch(function (error) {
+            console.error('Error adding student:', error);
+        });
+    });
+</script>
+</body>
+</html>
