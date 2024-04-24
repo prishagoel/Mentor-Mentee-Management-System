@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Set Meeting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper blue">
+            <a href="#" class="brand-logo">Mentor-Mentee Management System</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/home">Home</a></li>
+                <li class="active"><a href="/set_meeting">Set Meeting</a></li>
+                <li><a href="/view_meetings">View Meetings</a></li>
+                <li><a href="/students">Students</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h3>Set Meeting</h3>
+    <form action="/saveMeeting" method="post">
+        <div>
+            <label for="student_id">Student ID:</label>
+            <input type="number" id="student_id" name="studentId">
+        </div>
+        <div>
+            <label for="meeting_date">Meeting Date:</label>
+            <input type="date" id="meeting_date" name="date">
+        </div>
+        <div>
+            <label for="meeting_topic">Meeting Topic:</label>
+            <input type="text" id="meeting_topic" name="topic">
+        </div>
+        <div>
+            <label for="remarks">Remarks:</label>
+            <textarea id="remarks" name="remarks"></textarea>
+        </div>
+        <button type="submit" class="waves-effect waves-light btn">Schedule Meeting</button>
+    </form>
+
+    <script>
+        $(document).ready(function(){
+            var message = /*[[${message}]]*/ null;
+            if (message != null && message !== '') {
+                M.toast({html: message});
+            }
+        });
+    </script>
+</body>
+</html>
